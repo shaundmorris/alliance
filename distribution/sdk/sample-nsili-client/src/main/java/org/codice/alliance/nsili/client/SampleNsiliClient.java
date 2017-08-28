@@ -336,20 +336,18 @@ public class SampleNsiliClient {
                 LOGGER.info("Downloading product : {}", fileDownloadUri);
                 try {
                     try (BufferedInputStream inputStream = new BufferedInputStream(fileDownloadUri.toURL()
-                            .openStream())) {
-                        try (FileOutputStream outputStream = new FileOutputStream(new File(
-                                productPath))) {
+                            .openStream());
+                            FileOutputStream outputStream = new FileOutputStream(new File(
+                                    productPath))) {
 
-                            final byte data[] = new byte[1024];
-                            int count;
-                            while ((count = inputStream.read(data, 0, 1024)) != -1) {
-                                outputStream.write(data, 0, count);
-                            }
-
-                            LOGGER.info("Successfully downloaded product from {}.",
-                                    fileDownloadUri);
-                            Files.deleteIfExists(Paths.get(productPath));
+                        final byte data[] = new byte[1024];
+                        int count;
+                        while ((count = inputStream.read(data, 0, 1024)) != -1) {
+                            outputStream.write(data, 0, count);
                         }
+
+                        LOGGER.info("Successfully downloaded product from {}.", fileDownloadUri);
+                        Files.deleteIfExists(Paths.get(productPath));
                     }
                 } catch (IOException e) {
                     LOGGER.error("Unable to download product from {}.", fileDownloadUri, e);
