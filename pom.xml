@@ -16,7 +16,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.codice</groupId>
     <artifactId>alliance</artifactId>
-    <version>1.5.0-SNAPSHOT</version>
+    <version>1.6.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>Alliance</name>
     <description>Codice Alliance</description>
@@ -121,7 +121,7 @@
         <yarn.version>v1.5.1</yarn.version>
 
         <!--Project properties-->
-        <ddf.version>2.18.0-SNAPSHOT</ddf.version>
+        <ddf.version>2.19.0-SNAPSHOT</ddf.version>
         <ddf.support.version>2.3.16</ddf.support.version>
         <codice-maven.version>0.2</codice-maven.version>
         <codice-test.version>0.3</codice-test.version>
@@ -177,7 +177,7 @@
         <usng4j.version>0.1</usng4j.version>
         <xstream.version>1.4.9</xstream.version>
         <!-- Command line argument properties for the maven-surefire-plugin -->
-        <surefire.argline.append/>
+        <surefire.argline.append />
         <surefire.argline>${jacoco.argline} ${surefire.argline.append} -Xmx1024m -XX:MaxPermSize=256m -Djava.awt.headless=true -noverify -Duser.timezone=UTC -Dddf.version=${ddf.version}</surefire.argline>
     </properties>
 
