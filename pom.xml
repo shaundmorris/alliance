@@ -90,7 +90,7 @@
         <icanhandlebarz.version>0.1</icanhandlebarz.version>
         <iframe-resizer.version>2.6.2</iframe-resizer.version>
         <jquery.version>1.11.0</jquery.version>
-        <jquery-ui.version>1.10.4</jquery-ui.version>
+        <jquery-ui.version>1.12.1</jquery-ui.version>
         <marionette.version>2.4.5</marionette.version>
         <moment.version>2.20.1</moment.version>
         <node.version>v8.9.4</node.version>
