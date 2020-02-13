@@ -25,6 +25,11 @@
     <packaging>bundle</packaging>
 
     <dependencies>
+        <dependency>
+            <groupId>ddf.security.core</groupId>
+            <artifactId>security-core-api</artifactId>
+            <version>${ddf.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>com.google.guava</groupId>
@@ -88,11 +93,6 @@
             <artifactId>platform-util</artifactId>
             <version>${ddf.version}</version>
         </dependency>
-        <dependency>
-            <groupId>ddf.security</groupId>
-            <artifactId>ddf-security-common</artifactId>
-            <version>${ddf.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>org.codice.alliance</groupId>
@@ -147,12 +147,6 @@
             <groupId>net.jodah</groupId>
             <artifactId>failsafe</artifactId>
             <version>${jodah-failsafe.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.java.dev.jsr-275</groupId>
-            <artifactId>jsr-275</artifactId>
-            <version>1.0-beta-2</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <!-- Upgrade mockito to version 2.1.0 for this module to get final mock capability -->
@@ -212,10 +206,8 @@
                             barchart-udt-bundle,
                             jcodec,
                             catalog-core-api-impl,
-                            ddf-security-common,
                             commons-lang3,
-                            commons-collections4,
-                            filter-proxy
+                            commons-collections4
                         </Embed-Dependency>
                     </instructions>
                 </configuration>
