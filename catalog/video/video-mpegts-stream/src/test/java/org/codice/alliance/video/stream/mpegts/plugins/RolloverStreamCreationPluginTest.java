@@ -19,6 +19,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import ddf.catalog.CatalogFramework;
+import ddf.security.SubjectOperations;
 import org.codice.alliance.video.stream.mpegts.Context;
 import org.codice.alliance.video.stream.mpegts.filename.FilenameGenerator;
 import org.codice.alliance.video.stream.mpegts.metacard.MetacardUpdater;
@@ -39,6 +40,7 @@ public class RolloverStreamCreationPluginTest {
     when(udpStreamProcessor.getFilenameTemplate()).thenReturn("template");
     when(udpStreamProcessor.getCatalogFramework()).thenReturn(mock(CatalogFramework.class));
     when(udpStreamProcessor.getParentMetacardUpdater()).thenReturn(mock(MetacardUpdater.class));
+    when(udpStreamProcessor.getSubjectOperations()).thenReturn(mock(SubjectOperations.class));
 
     UuidGenerator uuidGenerator = mock(UuidGenerator.class);
     when(uuidGenerator.generateUuid()).thenReturn("anId");
