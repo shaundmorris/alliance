@@ -206,6 +206,7 @@
                             !sun.security.x509.*,
                             !org.codice.transformer.video.*,
                             !org.apache.commons.collections4.*,
+                            !javax.activation,
                             sun.net.dns;resolution:=optional,
                             *
                         </Import-Package>
