@@ -176,30 +176,30 @@ pipeline {
         }
     }
 
-    post {
-        always{
-            postCommentIfPR("Build ${currentBuild.currentResult} See the job results in [legacy Jenkins UI](${BUILD_URL}) or in [Blue Ocean UI](${BUILD_URL}display/redirect).", "${GITHUB_USERNAME}", "${GITHUB_REPONAME}", "${GITHUB_TOKEN}")
-        }
-        success {
-            slackSend color: 'good', message: "SUCCESS: ${JOB_NAME} ${BUILD_NUMBER}"
-        }
-        failure {
-            slackSend color: '#ea0017', message: "FAILURE: ${JOB_NAME} ${BUILD_NUMBER}. See the results here: ${BUILD_URL}"
-        }
-        unstable {
-            slackSend color: '#ffb600', message: "UNSTABLE: ${JOB_NAME} ${BUILD_NUMBER}. See the results here: ${BUILD_URL}"
-        }
-        aborted {
-            slackSend color: '#909090', message: "ABORTED: ${JOB_NAME} ${BUILD_NUMBER}. See the results here: ${BUILD_URL}"
-        }
-        cleanup {
-            catchError(buildResult: null, stageResult: 'FAILURE', message: 'Cleanup Failure') {
-                echo '...Cleaning up workspace'
-                cleanWs()
-                wrap([$class: 'MesosSingleUseSlave']) {
-                    sh 'echo "...Shutting down single-use slave: `hostname`"'
-                }
-            }
-        }
-    }
+    // post {
+    //     always{
+    //         postCommentIfPR("Build ${currentBuild.currentResult} See the job results in [legacy Jenkins UI](${BUILD_URL}) or in [Blue Ocean UI](${BUILD_URL}display/redirect).", "${GITHUB_USERNAME}", "${GITHUB_REPONAME}", "${GITHUB_TOKEN}")
+    //     }
+    //     success {
+    //         slackSend color: 'good', message: "SUCCESS: ${JOB_NAME} ${BUILD_NUMBER}"
+    //     }
+    //     failure {
+    //         slackSend color: '#ea0017', message: "FAILURE: ${JOB_NAME} ${BUILD_NUMBER}. See the results here: ${BUILD_URL}"
+    //     }
+    //     unstable {
+    //         slackSend color: '#ffb600', message: "UNSTABLE: ${JOB_NAME} ${BUILD_NUMBER}. See the results here: ${BUILD_URL}"
+    //     }
+    //     aborted {
+    //         slackSend color: '#909090', message: "ABORTED: ${JOB_NAME} ${BUILD_NUMBER}. See the results here: ${BUILD_URL}"
+    //     }
+    //     cleanup {
+    //         catchError(buildResult: null, stageResult: 'FAILURE', message: 'Cleanup Failure') {
+    //             echo '...Cleaning up workspace'
+    //             cleanWs()
+    //             wrap([$class: 'MesosSingleUseSlave']) {
+    //                 sh 'echo "...Shutting down single-use slave: `hostname`"'
+    //             }
+    //         }
+    //     }
+    // }
 }
