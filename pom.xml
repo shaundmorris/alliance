@@ -134,7 +134,7 @@
         <asciidoctor.source.highlighter>coderay</asciidoctor.source.highlighter>
         <asciidoctorj.diagram.version>1.5.4.1</asciidoctorj.diagram.version>
         <asciidoctorj.pdf.version>1.5.0-alpha.16</asciidoctorj.pdf.version>
-        <asciidoctorj.version>1.5.6</asciidoctorj.version>
+        <asciidoctorj.version>2.4.0</asciidoctorj.version>
         <jruby.version>9.0.4.0</jruby.version>
 
         <camel.version>2.22.1</camel.version>
