@@ -62,7 +62,8 @@ pipeline {
                 }
             }
             options {
-                timeout(time: 1, unit: 'HOURS')
+                //Temporarily increased timeout due to downloading artifacts
+                timeout(time: 2, unit: 'HOURS')
             }
             steps {
                 // TODO: Maven downgraded to work around a linux build issue. Falling back to system java to work around a linux build issue. re-investigate upgrading later
