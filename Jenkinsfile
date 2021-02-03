@@ -35,6 +35,7 @@ pipeline {
         GITHUB_USERNAME = 'codice'
         GITHUB_TOKEN = credentials('cxbot')
         GITHUB_REPONAME = 'alliance'
+        DOCKERHUB_CREDS = 'dockerhub-codicebot'
     }
     stages {
         stage('Setup') {
@@ -69,17 +70,17 @@ pipeline {
                 withMaven(maven: 'maven-latest', globalMavenSettingsConfig: 'default-global-settings', mavenSettingsConfig: 'codice-maven-settings', mavenOpts: '${LARGE_MVN_OPTS} ${LINUX_MVN_RANDOM}', options: [artifactsPublisher(disabled: true), dependenciesFingerprintPublisher(disabled: true, includeScopeCompile: false, includeScopeProvided: false, includeScopeRuntime: false, includeSnapshotVersions: false)]) {
                     sh '''
                         unset JAVA_TOOL_OPTIONS
-                        mvn install -B -DskipStatic=true -DskipTests=true $DISABLE_DOWNLOAD_PROGRESS_OPTS
+                        mvn install -B -DskipStatic=true -DskipTests=true $DISABLE_DOWNLOAD_PROGRESS_OPTS -Ddocker.username=$DOCKERHUB_CREDS_USR -Ddocker.password=$DOCKERHUB_CREDS_PSW
                     '''
 
                     sh '''
                         unset JAVA_TOOL_OPTIONS
-                        mvn clean install -B -P !itests -Dgib.enabled=true -Dgib.referenceBranch=/refs/remotes/origin/$CHANGE_TARGET $DISABLE_DOWNLOAD_PROGRESS_OPTS
+                        mvn clean install -B -P !itests -Dgib.enabled=true -Dgib.referenceBranch=/refs/remotes/origin/$CHANGE_TARGET $DISABLE_DOWNLOAD_PROGRESS_OPTS -Ddocker.username=$DOCKERHUB_CREDS_USR -Ddocker.password=$DOCKERHUB_CREDS_PSW
                     '''
 
                     sh '''
                         unset JAVA_TOOL_OPTIONS
-                        mvn install -B -pl $ITESTS -amd -nsu $DISABLE_DOWNLOAD_PROGRESS_OPTS
+                        mvn install -B -pl $ITESTS -amd -nsu $DISABLE_DOWNLOAD_PROGRESS_OPTS -Ddocker.username=$DOCKERHUB_CREDS_USR -Ddocker.password=$DOCKERHUB_CREDS_PSW
                     '''
                 }
             }
@@ -97,12 +98,12 @@ pipeline {
                 withMaven(maven: 'maven-latest', globalMavenSettingsConfig: 'default-global-settings', mavenSettingsConfig: 'codice-maven-settings', mavenOpts: '${LARGE_MVN_OPTS} ${LINUX_MVN_RANDOM}') {
                     sh '''
                         unset JAVA_TOOL_OPTIONS
-                        mvn clean install -B -P !itests $DISABLE_DOWNLOAD_PROGRESS_OPTS
+                        mvn clean install -B -P !itests $DISABLE_DOWNLOAD_PROGRESS_OPTS -Ddocker.username=$DOCKERHUB_CREDS_USR -Ddocker.password=$DOCKERHUB_CREDS_PSW
                     '''
 
                     sh '''
                         unset JAVA_TOOL_OPTIONS
-                        mvn install -B -pl $ITESTS -amd -nsu $DISABLE_DOWNLOAD_PROGRESS_OPTS
+                        mvn install -B -pl $ITESTS -amd -nsu $DISABLE_DOWNLOAD_PROGRESS_OPTS -Ddocker.username=$DOCKERHUB_CREDS_USR -Ddocker.password=$DOCKERHUB_CREDS_PSW
                     '''
                 }
             }
@@ -158,7 +159,6 @@ pipeline {
                 }
             }
         }
-
         /*
           Deploy stage will only be executed for deployable branches. These include master and any patch branch matching M.m.x format (i.e. 2.10.x, 2.9.x, etc...).
           It will also only deploy in the presence of an environment variable JENKINS_ENV = 'prod'. This can be passed in globally from the jenkins master node settings.
