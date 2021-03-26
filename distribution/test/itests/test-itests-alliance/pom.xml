@@ -81,10 +81,8 @@
 
         <!--start ddf dependencies-->
         <dependency>
-            <groupId>ddf.thirdparty</groupId>
+            <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
-            <version>${ddf.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>ddf.thirdparty</groupId>

@@ -43,8 +43,13 @@
         <dependency>
             <groupId>org.awaitility</groupId>
             <artifactId>awaitility</artifactId>
-            <version>${awaitility.version}</version>
+            <version>3.1.6</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.osgi</groupId>-->
+<!--            <artifactId>org.osgi.core</artifactId>-->
+<!--            <version>5.0.0</version>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
@@ -53,6 +58,7 @@
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
                 <version>3.5.1</version>
+<!--                <version>4.2.1</version> -->
                 <executions>
                     <execution>
                         <phase>compile</phase>
@@ -77,6 +83,7 @@
                             pax-exam-container-karaf,
                             common
                         </Embed-Dependency>
+                        <_noee>true</_noee>
                     </instructions>
                 </configuration>
             </plugin>
